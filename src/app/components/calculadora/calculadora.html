@@ -1,1 +1,18 @@
-<p>calculadora works!</p>
+<div class="calculadora-container">
+  <h2>Calculadora</h2>
+
+  <div class="inputs-container">
+    <input type="number" [(ngModel)]="a" placeholder="Número A" />
+    <input type="number" [(ngModel)]="b" placeholder="Número B" />
+  </div>
+
+  <div class="buttons-container">
+    <button (click)="sumar()">+</button>
+    <button (click)="restar()">-</button>
+    <button (click)="multiplicar()">*</button>
+    <button (click)="dividir()">/</button>
+  </div>
+
+  <h3>Resultado: {{ res }}</h3>
+  <button routerLink="/">Regresar a Lista</button>
+</div>
