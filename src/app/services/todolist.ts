@@ -32,6 +32,6 @@ export class Todolist {
     }
   }
   delete(id: number): void {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+    this.todos = this.todos.filter(t => t.id !== id);
   }
 }

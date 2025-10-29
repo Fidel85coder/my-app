@@ -1,9 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Todo, Todolist } from '../../services/todolist'
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-lista',
-  imports: [],
+  imports: [FormsModule, RouterLink],
+  standalone: true,
   templateUrl: './lista.html',
   styleUrl: './lista.css',
 })
@@ -28,6 +31,6 @@ export class Lista implements OnInit {
 
   deleteTodo(id: number) {
     this.todoService.delete(id);
+    this.todos = this.todoService.getAll();
   }
-
 }

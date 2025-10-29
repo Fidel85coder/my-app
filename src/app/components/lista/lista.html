@@ -1,3 +1,27 @@
-<h1>Lista épica</h1>
+<div class="todo-container">
+    <h2>Lista de Tareas</h2>
 
+    <input 
+        type="text"
+        [(ngModel)]="newTodo"
+        placeholder="Ingresa tarea"
+    />
 
+    <button (click)="addTodo()">Agregar</button>
+    <ul>
+    @for (todo of todos; track todo.id) {
+        <li>
+        <input
+            type="checkbox"
+            [checked]="todo.completed"
+            (change)="toggleTodo(todo.id)"
+        />
+        <span [class.completed]="todo.completed">{{ todo.title }}</span>
+        <button (click)="deleteTodo(todo.id)">❌</button>
+        </li>
+    } @empty {
+        <li>No hay tareas pendientes. 🎉</li>
+    }
+    </ul>
+    <button routerLink="/calculadora">CALCULATE</button>
+</div>
