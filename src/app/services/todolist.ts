@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface todo {
+export interface Todo {
   id: number,
   title: string,
   completed: boolean,
@@ -10,15 +10,15 @@ export interface todo {
   providedIn: 'root',
 })
 export class Todolist {
-  private todos: todo[] = [
+  private todos: Todo[] = [
     { id: 1, title: 'Aprender Angular', completed: false },
     { id: 2, title: 'Hacer ejercicio', completed: true }
   ];
-  getAll(): todo[] {
+  getAll(): Todo[] {
     return this.todos;
   }
   add(title: string): void {
-    const newTodo: todo = {
+    const newTodo: Todo = {
       id: this.todos.length + 1,
       title: title,
       completed: false,
