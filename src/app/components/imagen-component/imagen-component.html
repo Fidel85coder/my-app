@@ -1,1 +1,10 @@
-<p>imagen-component works!</p>
+<p>Generador de Imágenes</p>
+
+<img [src]="url">
+
+<input 
+  type="number" 
+  placeholder="Ingresa un número" 
+  [(ngModel)]="id"
+  (ngModelChange)="modificarUrl()"
+/>
