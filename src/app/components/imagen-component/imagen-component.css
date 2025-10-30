@@ -47,3 +47,27 @@ input[type="number"]:focus {
   border-color: #487eb0;
   box-shadow: 0 0 6px rgba(72, 126, 176, 0.3);
 }
+
+/* Botón */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #487eb0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #40739e;
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.97);
+  background-color: #3b5998;
+}
