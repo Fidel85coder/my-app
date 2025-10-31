@@ -1,36 +1,49 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Todo, Todolist } from '../../services/todolist'
+import { Task, TaskService } from '../../services/todolist';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-lista',
-  imports: [FormsModule, RouterLink],
   standalone: true,
+  imports: [FormsModule, RouterLink], 
   templateUrl: './lista.html',
   styleUrl: './lista.css',
 })
 export class Lista implements OnInit {
-  todos: Todo[] = [];
-  newTodo = '';
-  todoService = inject(Todolist);
+  tasks: Task[] = [];
+  newTaskTitle = '';
 
-  ngOnInit(): void {
-    this.todos = this.todoService.getAll();
+  taskService = inject(TaskService);
+
+  ngOnInit() {
+    this.loadTasks();
   }
 
-  addTodo() {
-    if (this.newTodo.trim()) {
-      this.todoService.add(this.newTodo);
-      this.newTodo = '';
-    }
-  }
-  toggleTodo(id: number) {
-    this.todoService.toggle(id);
+  loadTasks() {
+    this.taskService.getAll().subscribe(data => this.tasks = data);
   }
 
-  deleteTodo(id: number) {
-    this.todoService.delete(id);
-    this.todos = this.todoService.getAll();
+  addTask() {
+    if (!this.newTaskTitle.trim()) return;
+    const task: Task = { title: this.newTaskTitle, completed: false };
+    this.taskService.add(task).subscribe(() => {
+      this.newTaskTitle = '';
+      this.loadTasks();
+    });
+  }
+
+  toggleTask(task: Task) {
+    task.completed = !task.completed;
+    this.taskService.update(task).subscribe();
+  }
+
+  deleteTask(id: number | undefined) {
+    if (id === undefined) return;
+    this.taskService.delete(id).subscribe(() => this.loadTasks());
+  }
+
+  trackById(index: number, task: Task) {
+  return task.id;
   }
 }
